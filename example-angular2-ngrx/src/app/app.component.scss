@@ -81,5 +81,19 @@ nav {
                }
             }
         }
+
+        .ngrx-logo {
+            text-align: right;
+            margin-right: 20px;
+            font-weight: 500;
+            font-size: 38px;
+            color: #fff;
+
+            background-image: url(/assets/ngrx-logo.png);
+            background-repeat: no-repeat;
+            background-size: contain;
+            width: 130px;
+            height: 100%;
+        }
     }
 }
