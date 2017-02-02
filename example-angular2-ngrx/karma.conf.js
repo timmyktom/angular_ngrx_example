@@ -17,6 +17,9 @@ module.exports = function (config) {
     preprocessors: {
       './src/test.ts': ['angular-cli']
     },
+    mime: {
+      'text/x-typescript': ['ts','tsx']
+    },
     remapIstanbulReporter: {
       reports: {
         html: 'coverage',
@@ -31,10 +34,17 @@ module.exports = function (config) {
               ? ['progress', 'karma-remap-istanbul']
               : ['progress'],
     port: 9876,
+    hostname: '127.0.0.1',
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
     browsers: ['Chrome'],
-    singleRun: false
+    singleRun: false,
+
+    // Based on: https://github.com/karma-runner/karma/issues/598#issuecomment-160977724
+    captureTimeout: 60 * 1000,
+    browserDisconnectTimeout: 15 * 1000,
+    browserDisconnectTolerance: 5,
+    browserNoActivityTimeout: 15 * 10000,
   });
 };

@@ -2,16 +2,34 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
+import { Store, StoreModule, State } from '@ngrx/store';
+
+import { AppState, reducer } from '../shared/reducers';
 
 import { BooksComponent } from './books.component';
+import { defaultBook } from './book.model';
 
 describe('BooksComponent', () => {
   let component: BooksComponent;
   let fixture: ComponentFixture<BooksComponent>;
+  let store: Store<AppState>;
+
+  let reduce = () => {
+    return <any>{
+      bookState: {
+          bookList: [],
+          selectedBook: defaultBook
+      }
+    } as AppState;
+  };
 
   beforeEach(async(() => {
+    let storeModuleImport = StoreModule.provideStore(reduce); // should include the mock reducer
     TestBed.configureTestingModule({
-      declarations: [ BooksComponent ]
+      declarations: [ BooksComponent ],
+      providers:     [
+        { provide: Store,  useValue: store },
+        ...storeModuleImport.providers]
     })
     .compileComponents();
   }));
@@ -22,7 +40,7 @@ describe('BooksComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  fit('should create', () => {
     expect(component).toBeTruthy();
   });
 });

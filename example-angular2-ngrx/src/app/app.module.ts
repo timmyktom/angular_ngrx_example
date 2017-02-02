@@ -3,9 +3,18 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import 'rxjs/Rx';
+
 import { BooksModule } from './books/books.module';
 import { CarsModule } from './cars/cars.module';
 import { AppRoutingModule } from './app.routing.module';
+
+import { reducer } from './shared/reducers';
+import { AppEffects } from './shared/effects';
+import { BookService } from './books/book.service';
+import { CarService } from './cars/car.service';
 
 import { AppComponent } from './app.component';
 
@@ -19,9 +28,11 @@ import { AppComponent } from './app.component';
     HttpModule,
     AppRoutingModule,
     BooksModule,
-    CarsModule
+    CarsModule,
+    StoreModule.provideStore(reducer),
+    EffectsModule.run(AppEffects)
   ],
-  providers: [],
+  providers: [BookService, CarService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

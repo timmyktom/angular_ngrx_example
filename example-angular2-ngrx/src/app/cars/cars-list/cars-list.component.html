@@ -1,0 +1,34 @@
+<div class="container">
+    <h3>Cars List</h3>
+    <div>
+        <table class="table table-responsive table-striped table-hover">
+          <thead> 
+            <tr> 
+              <th>&nbsp;</th> 
+              <th>Manufacturer</th> 
+              <th>Model</th> 
+              <th>price</th> 
+            </tr> 
+          </thead>
+          <tbody>
+            <tr *ngFor="let car of carsList">
+              <td>
+                <input type="radio" name="bookId"
+                  [(ngModel)]="selectedCarModel"
+                  [value]="car.model"> 
+              </td>
+              <td>
+                {{car.manufacturer}}
+              </td>
+              <td>
+                {{car.model}}
+              </td>
+              <td>
+                {{car.price}}
+              </td>
+            </tr>
+          </tbody>
+      </table>
+    </div>
+
+</div>
