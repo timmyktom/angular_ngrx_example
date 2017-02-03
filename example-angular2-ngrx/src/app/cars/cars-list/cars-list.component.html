@@ -1,5 +1,6 @@
 <div class="container">
     <h3>Cars List</h3>
+    <button class="btn" (click)="onSelect()" [disabled]="!selectedCarModel">Show Car details</button>
     <div>
         <table class="table table-responsive table-striped table-hover">
           <thead> 

@@ -7,6 +7,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import 'rxjs/Rx';
 
+import { HomeModule } from './home/home.module';
 import { BooksModule } from './books/books.module';
 import { CarsModule } from './cars/cars.module';
 import { AppRoutingModule } from './app.routing.module';
@@ -27,6 +28,7 @@ import { AppComponent } from './app.component';
     FormsModule,
     HttpModule,
     AppRoutingModule,
+    HomeModule,
     BooksModule,
     CarsModule,
     StoreModule.provideStore(reducer),
