@@ -2,10 +2,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { Store, StoreModule, State } from '@ngrx/store';
 
 import { AppState, reducer } from '../shared/reducers';
 import { CarsComponent } from './cars.component';
+import { CarsListComponent } from './cars-list/cars-list.component';
+import { CarDetailsComponent } from './car-details/car-details.component';
 import { defaultCar } from './car.model';
 
 describe('CarsComponent', () => {
@@ -25,7 +28,14 @@ describe('CarsComponent', () => {
   beforeEach(async(() => {
     let storeModuleImport = StoreModule.provideStore(reduce); // should include the mock reducer
     TestBed.configureTestingModule({
-      declarations: [ CarsComponent ],
+    imports: [
+        FormsModule
+        ],
+      declarations: [ 
+          CarsComponent,
+          CarsListComponent,
+          CarDetailsComponent
+           ],
       providers:     [
         { provide: Store,  useValue: store },
         ...storeModuleImport.providers]

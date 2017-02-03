@@ -12,7 +12,8 @@ describe('The Cars reducer', () => {
     beforeEach(() => {
         state = {
             carList: [],
-            selectedCar: defaultCar
+            selectedCar: defaultCar,
+            isCarListLoaded: false
         };
     });
 

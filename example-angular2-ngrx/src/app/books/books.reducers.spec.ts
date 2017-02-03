@@ -12,7 +12,8 @@ describe('The Books reducer', () => {
     beforeEach(() => {
         state = {
             bookList: [],
-            selectedBook: defaultBook
+            selectedBook: defaultBook,
+            isBookListLoaded: false
         };
     });
 

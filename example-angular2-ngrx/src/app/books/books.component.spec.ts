@@ -2,15 +2,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { Store, StoreModule, State } from '@ngrx/store';
+
 
 import { AppState, reducer } from '../shared/reducers';
 
 import { BooksComponent } from './books.component';
+import { BooksListComponent } from './books-list/books-list.component';
+import { BookDetailsComponent } from './book-details/book-details.component';
 import { defaultBook } from './book.model';
 
 describe('BooksComponent', () => {
-  let component: BooksComponent;
+  let component: BooksComponent;                                 
   let fixture: ComponentFixture<BooksComponent>;
   let store: Store<AppState>;
 
@@ -18,7 +22,8 @@ describe('BooksComponent', () => {
     return <any>{
       bookState: {
           bookList: [],
-          selectedBook: defaultBook
+          selectedBook: defaultBook,
+          isBookListLoaded: false
       }
     } as AppState;
   };
@@ -26,7 +31,14 @@ describe('BooksComponent', () => {
   beforeEach(async(() => {
     let storeModuleImport = StoreModule.provideStore(reduce); // should include the mock reducer
     TestBed.configureTestingModule({
-      declarations: [ BooksComponent ],
+    imports: [
+        FormsModule
+        ],
+      declarations: [ 
+          BooksComponent,
+          BooksListComponent,
+          BookDetailsComponent
+      ],
       providers:     [
         { provide: Store,  useValue: store },
         ...storeModuleImport.providers]
