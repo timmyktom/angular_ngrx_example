@@ -5,11 +5,13 @@ import { Car, defaultCar } from './car.model';
 
 export interface CarState {
     carList: Car[];
+    isCarListLoaded: boolean;
     selectedCar: Car;
 };
 
 let carState: CarState = {
     carList: [],
+    isCarListLoaded: false,
     selectedCar: defaultCar
 };
 
@@ -20,10 +22,12 @@ export const CarsReducer: ActionReducer<CarState> = (state = carState, action: A
             newState = Object.assign({}, state);
             newState.carList = [];
             newState.selectedCar = Object.assign({}, defaultCar);
+            newState.isCarListLoaded = false;
             return newState;
         case CarsActions.GET_CARS_SUCCESS:
             newState = Object.assign({}, state);
             newState.carList = action.payload;
+            newState.isCarListLoaded = true;
             return newState;
         case CarsActions.GET_CAR_DETAILS:
             newState = Object.assign({}, state);

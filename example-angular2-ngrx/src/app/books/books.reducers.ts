@@ -5,11 +5,13 @@ import { Book, defaultBook } from './book.model';
 
 export interface BookState {
     bookList: Book[];
+    isBookListLoaded: boolean;
     selectedBook: Book;
 };
 
 let bookState: BookState = {
     bookList: [],
+    isBookListLoaded: false,
     selectedBook: defaultBook
 };
 
@@ -20,10 +22,12 @@ export const BooksReducer: ActionReducer<BookState> = (state = bookState, action
             newState = Object.assign({}, state);
             newState.bookList = [];
             newState.selectedBook = Object.assign({}, defaultBook);
+            newState.isBookListLoaded = false;
             return newState;
         case BooksActions.GET_BOOKS_SUCCESS:
             newState = Object.assign({}, state);
             newState.bookList = action.payload;
+            newState.isBookListLoaded = true;
             return newState;
         case BooksActions.GET_BOOK_DETAILS:
             newState = Object.assign({}, state);
