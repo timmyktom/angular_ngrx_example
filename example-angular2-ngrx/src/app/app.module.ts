@@ -24,13 +24,8 @@ import { AppComponent } from './app.component';
     AppComponent
   ],
   imports: [
-    BrowserModule,
-    FormsModule,
-    HttpModule,
-    AppRoutingModule,
-    HomeModule,
-    BooksModule,
-    CarsModule,
+    BrowserModule, FormsModule, HttpModule,
+    AppRoutingModule, HomeModule, BooksModule, CarsModule,
     StoreModule.provideStore(reducer),
     EffectsModule.run(AppEffects)
   ],

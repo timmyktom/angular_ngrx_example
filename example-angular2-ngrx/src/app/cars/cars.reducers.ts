@@ -18,12 +18,6 @@ const initialCarState: CarState = {
 export const CarsReducer: ActionReducer<CarState> = (state = initialCarState, action: Action) => {
     let newState;
     switch (action.type) {
-        case CarsActions.GET_CARS:
-            newState = Object.assign({}, state);
-            newState.carList = [];
-            newState.selectedCar = Object.assign({}, defaultCar);
-            newState.isCarListLoaded = false;
-            return newState;
         case CarsActions.GET_CARS_SUCCESS:
             newState = Object.assign({}, state);
             newState.carList = action.payload;
