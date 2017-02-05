@@ -9,8 +9,8 @@ export class BookService {
     constructor(private http: Http) {}
 
     getBooks(): Observable<Book[]> {
-        let booksServiceUrl = 'assets/data/books.json';
-        let headers = new Headers();
+        const booksServiceUrl = 'assets/data/books.json';
+        const headers = new Headers();
         return this.http.get(booksServiceUrl, { headers: headers })
             .map((res: Response) => {
                 return <Book[]>res.json();

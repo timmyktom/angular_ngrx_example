@@ -9,8 +9,8 @@ export class CarService {
     constructor(private http: Http) {}
 
     getCars(): Observable<Car[]> {
-        let carsServiceUrl = 'assets/data/cars.json';
-        let headers = new Headers();
+        const carsServiceUrl = 'assets/data/cars.json';
+        const headers = new Headers();
         return this.http.get(carsServiceUrl, { headers: headers })
             .map((res: Response) => {
                 return <Car[]>res.json();

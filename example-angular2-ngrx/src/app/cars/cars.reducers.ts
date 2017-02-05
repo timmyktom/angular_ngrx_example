@@ -9,13 +9,13 @@ export interface CarState {
     selectedCar: Car;
 };
 
-let carState: CarState = {
+const initialCarState: CarState = {
     carList: [],
     isCarListLoaded: false,
     selectedCar: defaultCar
 };
 
-export const CarsReducer: ActionReducer<CarState> = (state = carState, action: Action) => {
+export const CarsReducer: ActionReducer<CarState> = (state = initialCarState, action: Action) => {
     let newState;
     switch (action.type) {
         case CarsActions.GET_CARS:

@@ -9,13 +9,13 @@ export interface BookState {
     selectedBook: Book;
 };
 
-let bookState: BookState = {
+const initialBookState: BookState = {
     bookList: [],
     isBookListLoaded: false,
     selectedBook: defaultBook
 };
 
-export const BooksReducer: ActionReducer<BookState> = (state = bookState, action: Action) => {
+export const BooksReducer: ActionReducer<BookState> = (state = initialBookState, action: Action) => {
     let newState;
     switch (action.type) {
         case BooksActions.GET_BOOKS:
