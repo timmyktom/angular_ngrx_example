@@ -4,6 +4,9 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../shared/reducers';
 import { Book } from './book.model';
 
+// For dump component concept
+// import { getBookDetails } from '../shared/actions';
+
 @Component({
   selector: 'app-books',
   templateUrl: './books.component.html',
@@ -21,5 +24,10 @@ export class BooksComponent implements OnInit {
       this.bookDetails = bState.selectedBook;
     });
   }
+
+  // For dump component concept
+  // onBookSelected(event) {
+  //     this.store.dispatch(getBookDetails(event.bookId));
+  // }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { AppState } from '../../shared/reducers';
@@ -14,7 +14,12 @@ export class BooksListComponent implements OnInit {
 
   @Input() booksList: Book[];
 
+  @Output() onBookSelect = new EventEmitter();
+
   selectedBookId: number;
+
+  // For dump component concept
+  // constructor() { }
 
   constructor(private store: Store<AppState>) { }
 
@@ -24,6 +29,9 @@ export class BooksListComponent implements OnInit {
   onSelect() {
     if (this.selectedBookId) {
        this.store.dispatch(getBookDetails(this.selectedBookId));
+
+       // For dump component concept
+       // this.onBookSelect.emit({bookId: this.selectedBookId});
     }
   }
 }
