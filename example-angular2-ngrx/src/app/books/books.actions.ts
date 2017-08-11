@@ -8,29 +8,23 @@ export const GET_BOOKS_ERROR = 'GET_BOOKS_ERROR';
 
 export const GET_BOOK_DETAILS = 'GET_BOOK_DETAILS';
 
-export function getBooks(): Action {
-    return {
-        type: GET_BOOKS
-    };
+export class GetBooks implements Action {
+    readonly type = GET_BOOKS;
 }
 
-export function getBooksSuccess(booksList: Book[]): Action {
-    return {
-        type: GET_BOOKS_SUCCESS,
-        payload: booksList
-    };
+export class GetBooksSuccess implements Action {
+    readonly type = GET_BOOKS_SUCCESS;
+    constructor(public payload: Book[]) { }
 }
 
-export function getBooksError(error: any): Action {
-    return {
-        type: GET_BOOKS_ERROR,
-        payload: error
-    };
+export class GetBooksError implements Action {
+    readonly type = GET_BOOKS_ERROR;
+    constructor(public payload: any) { }
 }
 
-export function getBookDetails(bookId: number): Action {
-    return {
-        type: GET_BOOK_DETAILS,
-        payload: bookId
-    };
+export class GetBookDetails implements Action {
+    readonly type = GET_BOOK_DETAILS;
+    constructor(public payload: number) { }
 }
+
+export type BooksActions = GetBooks | GetBooksSuccess | GetBooksError | GetBookDetails;

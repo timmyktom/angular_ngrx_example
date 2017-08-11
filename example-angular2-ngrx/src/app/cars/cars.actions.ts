@@ -8,29 +8,23 @@ export const GET_CARS_ERROR = 'GET_CARS_ERROR';
 
 export const GET_CAR_DETAILS = 'GET_CAR_DETAILS';
 
-export function getCars(): Action {
-    return {
-        type: GET_CARS
-    };
+export class GetCars implements Action {
+    readonly type = GET_CARS;
 }
 
-export function getCarsSuccess(carsList: Car[]): Action {
-    return {
-        type: GET_CARS_SUCCESS,
-        payload: carsList
-    };
+export class GetCarsSuccess implements Action {
+    readonly type = GET_CARS_SUCCESS;
+    constructor(public payload: Car[]) { }
 }
 
-export function getCarsError(error: any): Action {
-    return {
-        type: GET_CARS_ERROR,
-        payload: error
-    };
+export class GetCarsError implements Action {
+    readonly type = GET_CARS_ERROR;
+    constructor(public payload: any) { }
 }
 
-export function getCarDetails(model: string): Action {
-    return {
-        type: GET_CAR_DETAILS,
-        payload: model
-    };
+export class GetCarDetails implements Action {
+    readonly type = GET_CAR_DETAILS;
+    constructor(public payload: string) { }
 }
+
+export type CarsActions = GetCars | GetCarsSuccess | GetCarsError | GetCarDetails;

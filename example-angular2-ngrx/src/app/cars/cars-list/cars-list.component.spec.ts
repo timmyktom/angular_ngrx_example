@@ -5,7 +5,7 @@ import { DebugElement } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Store, StoreModule, ActionReducer, State } from '@ngrx/store';
 
-import { AppState, reducer } from '../../shared/reducers';
+import { AppState, reducers } from '../../shared/reducers';
 
 import { CarsListComponent } from './cars-list.component';
 import { mockCars } from '../../testing/mockdata';

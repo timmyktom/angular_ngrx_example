@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { AppState } from '../../shared/reducers';
-import { getCarDetails } from '../../shared/actions';
+import { GetCarDetails } from '../../shared/actions';
 
 import { Car } from '../car.model';
 
@@ -23,7 +23,7 @@ export class CarsListComponent implements OnInit {
 
   onSelect() {
     if (this.selectedCarModel) {
-       this.store.dispatch(getCarDetails(this.selectedCarModel));
+      this.store.dispatch(new GetCarDetails(this.selectedCarModel));
     }
   }
 

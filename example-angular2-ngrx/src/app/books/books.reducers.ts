@@ -15,8 +15,8 @@ const initialBookState: BookState = {
     selectedBook: defaultBook
 };
 
-export const BooksReducer: ActionReducer<BookState> = (state = initialBookState, action: Action) => {
-    let newState;
+export function BooksReducer(state = initialBookState, action: BooksActions.BooksActions): BookState {
+    let newState: BookState;
     switch (action.type) {
         case BooksActions.GET_BOOKS_SUCCESS:
             newState = Object.assign({}, state);

@@ -40,7 +40,7 @@ describe('App: ExampleAngular2Ngrx', () => {
   let store: Store<AppState>;
 
   beforeEach(async(() => {
-    let storeModuleImport = StoreModule.provideStore(reduce); // should include the mock reducer
+    let storeModuleImport = StoreModule.forRoot(reduce); // should include the mock reducer
     TestBed.configureTestingModule({
       imports: [
           FormsModule,

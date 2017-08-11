@@ -5,7 +5,7 @@ import { AppState } from '../shared/reducers';
 import { Book } from './book.model';
 
 // For dump component concept
-// import { getBookDetails } from '../shared/actions';
+// import { GetBookDetails } from '../shared/actions';
 
 @Component({
   selector: 'app-books',
@@ -27,7 +27,7 @@ export class BooksComponent implements OnInit {
 
   // For dump component concept
   // onBookSelected(event) {
-  //     this.store.dispatch(getBookDetails(event.bookId));
+  //     this.store.dispatch(new GetBookDetails(event.bookId));
   // }
 
 }

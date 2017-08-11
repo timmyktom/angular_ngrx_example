@@ -5,7 +5,7 @@ import { DebugElement } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Store, StoreModule, State } from '@ngrx/store';
 
-import { AppState, reducer } from '../shared/reducers';
+import { AppState, reducers } from '../shared/reducers';
 import { CarsComponent } from './cars.component';
 import { CarsListComponent } from './cars-list/cars-list.component';
 import { CarDetailsComponent } from './car-details/car-details.component';
@@ -26,7 +26,7 @@ describe('CarsComponent', () => {
   };
 
   beforeEach(async(() => {
-    let storeModuleImport = StoreModule.provideStore(reduce); // should include the mock reducer
+    let storeModuleImport = StoreModule.forRoot(reducers); // should include the mock reducer
     TestBed.configureTestingModule({
     imports: [
         FormsModule

@@ -8,7 +8,6 @@ module.exports = function (config) {
     plugins: [
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
-      require('karma-remap-istanbul'),
       require('@angular/cli/plugins/karma')
     ],
     files: [
@@ -19,12 +18,6 @@ module.exports = function (config) {
     },
     mime: {
       'text/x-typescript': ['ts','tsx']
-    },
-    remapIstanbulReporter: {
-      reports: {
-        html: 'coverage',
-        lcovonly: './coverage/coverage.lcov'
-      }
     },
     angularCli: {
       config: './angular-cli.json',

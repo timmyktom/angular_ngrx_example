@@ -12,7 +12,7 @@ import { BooksModule } from './books/books.module';
 import { CarsModule } from './cars/cars.module';
 import { AppRoutingModule } from './app.routing.module';
 
-import { reducer } from './shared/reducers';
+import { reducers } from './shared/reducers';
 import { AppEffects } from './shared/effects';
 import { BookService } from './books/book.service';
 import { CarService } from './cars/car.service';
@@ -26,8 +26,8 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule, FormsModule, HttpModule,
     AppRoutingModule, HomeModule, BooksModule, CarsModule,
-    StoreModule.provideStore(reducer),
-    EffectsModule.run(AppEffects)
+    StoreModule.forRoot(reducers),
+    EffectsModule.forRoot([AppEffects])
   ],
   providers: [BookService, CarService],
   bootstrap: [AppComponent]

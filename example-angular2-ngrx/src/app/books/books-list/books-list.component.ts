@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { AppState } from '../../shared/reducers';
-import { getBookDetails } from '../../shared/actions';
+import { GetBookDetails } from '../../shared/actions';
 
 import { Book } from '../book.model';
 @Component({
@@ -28,7 +28,7 @@ export class BooksListComponent implements OnInit {
 
   onSelect() {
     if (this.selectedBookId) {
-       this.store.dispatch(getBookDetails(this.selectedBookId));
+      this.store.dispatch(new GetBookDetails(this.selectedBookId));
 
        // For dump component concept
        // this.onBookSelect.emit({bookId: this.selectedBookId});

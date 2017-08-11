@@ -10,18 +10,18 @@ export class AppEffects {
      @Effect() getBooksEffects$ = this.actions$
         .ofType(actions.GET_BOOKS)
         .switchMap(() => this.bookService.getBooks()
-            .map(bookList => actions.getBooksSuccess(bookList))
+            .map(bookList => new actions.GetBooksSuccess(bookList))
             .catch((error) => {
-                return Observable.of(actions.getBooksError(error));
+                return Observable.of(new actions.GetBooksError(error));
             })
         );
 
     @Effect() getCars$ = this.actions$
         .ofType(actions.GET_CARS)
         .switchMap(() => this.carService.getCars()
-            .map(carList => actions.getCarsSuccess(carList))
+            .map(carList => new actions.GetCarsSuccess(carList))
             .catch((error) => {
-                return Observable.of(actions.getCarsError(error));
+                return Observable.of(new actions.GetCarsError(error));
             })
         );
 

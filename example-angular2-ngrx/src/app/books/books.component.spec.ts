@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { Store, StoreModule, State } from '@ngrx/store';
 
 
-import { AppState, reducer } from '../shared/reducers';
+import { AppState, reducers } from '../shared/reducers';
 
 import { BooksComponent } from './books.component';
 import { BooksListComponent } from './books-list/books-list.component';
@@ -29,7 +29,7 @@ describe('BooksComponent', () => {
   };
 
   beforeEach(async(() => {
-    let storeModuleImport = StoreModule.provideStore(reduce); // should include the mock reducer
+    let storeModuleImport = StoreModule.forRoot(reducers); // should include the mock reducer
     TestBed.configureTestingModule({
     imports: [
         FormsModule

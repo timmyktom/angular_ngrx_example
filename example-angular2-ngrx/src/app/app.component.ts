@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from './shared/reducers';
-import { getBooks, getCars } from './shared/actions';
+import { GetBooks, GetCars } from './shared/actions';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
   constructor(private store: Store<AppState>) {}
 
   ngOnInit() {
-    this.store.dispatch(getBooks());
-    this.store.dispatch(getCars());
+    this.store.dispatch(new GetBooks());
+    this.store.dispatch(new GetCars());
   }
 }
