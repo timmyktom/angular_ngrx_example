@@ -2,7 +2,6 @@
   "name": "example-angular2-ngrx",
   "version": "1.0.0",
   "license": "MIT",
-  "angular-cli": {},
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
