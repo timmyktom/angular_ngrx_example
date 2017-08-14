@@ -7,6 +7,8 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import 'rxjs/Rx';
 
+import { environment } from '../environments/environment';
+
 import { HomeModule } from './home/home.module';
 import { BooksModule } from './books/books.module';
 import { CarsModule } from './cars/cars.module';
@@ -19,6 +21,8 @@ import { CarService } from './cars/car.service';
 
 import { AppComponent } from './app.component';
 
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -27,7 +31,10 @@ import { AppComponent } from './app.component';
     BrowserModule, FormsModule, HttpModule,
     AppRoutingModule, HomeModule, BooksModule, CarsModule,
     StoreModule.forRoot(reducers),
-    EffectsModule.forRoot([AppEffects])
+    EffectsModule.forRoot([AppEffects]),
+    !environment.production ? StoreDevtoolsModule.instrument({
+      maxAge: 25 //  Retains last 25 states
+    }):[]
   ],
   providers: [BookService, CarService],
   bootstrap: [AppComponent]
