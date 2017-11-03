@@ -1,3 +1,35 @@
-<p>
-  cars-list works!
-</p>
+<div class="container">
+  <h3>Cars List</h3>
+  <button class="btn" (click)="onSelect()" [disabled]="!selectedCarModel">Show Car details</button>
+  <div>
+      <table class="table table-responsive table-striped table-hover"
+        *ngIf="carsList && carsList.length !== 0">
+        <thead> 
+          <tr> 
+            <th>&nbsp;</th> 
+            <th>Manufacturer</th> 
+            <th>Model</th> 
+            <th>price</th> 
+          </tr> 
+        </thead>
+        <tbody>
+          <tr *ngFor="let car of carsList">
+            <td>
+              <input type="radio" name="bookId"
+                [(ngModel)]="selectedCarModel"
+                [value]="car.model"> 
+            </td>
+            <td>
+              {{car.manufacturer}}
+            </td>
+            <td>
+              {{car.model}}
+            </td>
+            <td>
+              {{car.price}}
+            </td>
+          </tr>
+        </tbody>
+    </table>
+  </div>
+</div>

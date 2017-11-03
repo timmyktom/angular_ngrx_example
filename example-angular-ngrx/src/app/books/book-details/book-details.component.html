@@ -1,3 +1,61 @@
-<p>
-  book-details works!
-</p>
+<div class="container" *ngIf="data.id !== -1">
+  <h3>Selected Book details</h3>
+  <div class="row">
+      <div class="col-xs-12 col-sm-6 col-md-3">
+          <img src="/assets/{{data.image}}">
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-9">
+          <div>
+              <label>Name : </label>
+              <span>{{data.name}}</span>
+          </div>
+          <div>
+              <label>Author : </label>
+              <span>{{data.author}}</span>
+          </div>
+          <div>
+              <label>Price : </label>
+              <span>{{data.price}}</span>
+          </div>
+          <div>
+              <label>Details : </label>
+              <span>{{data.detail}}</span>
+          </div>
+      </div>
+  </div>
+  <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12">
+          <h3>Reviews</h3>
+          <table class="table table-responsive table-striped table-hover">
+              <thead> 
+                  <tr> 
+                      <th>Rating</th> 
+                      <th>Author</th> 
+                      <th>Date</th> 
+                      <th>Title</th>
+                      <th>Comment</th> 
+                  </tr> 
+              </thead>
+              <tbody>
+                  <tr *ngFor="let review of data.reviews">
+                      <td>
+                          {{review.rating}}
+                      </td>
+                      <td>
+                          {{review.author}}
+                      </td>
+                      <td>
+                          {{review.date}}
+                      </td>
+                      <td>
+                          {{review.title}}
+                      </td>
+                      <td>
+                          {{review.comment}}
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
+</div>
