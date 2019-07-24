@@ -1,0 +1,8 @@
+<app-books-list 
+[booksList]="books"
+(onBookSelect)="onBookSelected($event)">
+</app-books-list>
+
+<app-book-details
+[selectedBookDetails]="bookDetails">
+</app-book-details>

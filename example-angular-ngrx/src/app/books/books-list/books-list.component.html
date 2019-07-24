@@ -1,0 +1,35 @@
+<div class="container">
+  <h3>Books List</h3>
+  <button class="btn" (click)="onSelect()" [disabled]="!selectedBookId">Show Book details</button>
+  <div>
+      <table class="table table-responsive table-striped table-hover" 
+        *ngIf="booksList && booksList.length !== 0">
+        <thead> 
+          <tr> 
+            <th>&nbsp;</th> 
+            <th>Book Name</th> 
+            <th>Author</th> 
+            <th>price</th> 
+          </tr> 
+        </thead>
+        <tbody>
+          <tr *ngFor="let book of booksList">
+            <td>
+              <input type="radio" name="bookId"
+                [(ngModel)]="selectedBookId"
+                [value]="book.id"> 
+            </td>
+            <td>
+              {{book.name}}
+            </td>
+            <td>
+              {{book.author}}
+            </td>
+            <td>
+              {{book.price}}
+            </td>
+          </tr>
+        </tbody>
+    </table>
+  </div>
+</div>

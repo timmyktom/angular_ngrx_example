@@ -1,0 +1,52 @@
+<div class="container" *ngIf="data.model !== ''">
+  <h3>Selected Car details</h3>
+  <div class="row">
+      <div class="col-xs-12 col-sm-6 col-md-3">
+          <img src="/assets/{{data.image}}">
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-9">
+          <div>
+              <label>Manufacturer : </label>
+              <span>{{data.manufacturer}}</span>
+          </div>
+          <div>
+              <label>Model : </label>
+              <span>{{data.model}}</span>
+          </div>
+          <div>
+              <label>Price : </label>
+              <span>{{data.price}}</span>
+          </div>
+          <div>
+              <label>More about : </label>
+              <a href="{{data.wiki}}"><span>{{data.wiki}}</span></a>
+          </div>
+      </div>
+  </div>
+  <div class="row">
+      <div class="col-xs-12 col-sm-4 col-md-4">
+          <h3>Features rating</h3>
+          <table class="table table-responsive table-striped table-hover">
+              <thead> 
+                  <tr> 
+                      <th>Feature</th> 
+                      <th>Rating</th> 
+                  </tr> 
+              </thead>
+              <tbody>
+                  <tr *ngFor="let feature of data.quality">
+                      <td>
+                          {{feature.name}}
+                      </td>
+                      <td>
+                          {{feature.rating}}
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+      <div class="col-xs-12 col-sm-4 col-md-8">
+          &nbsp;
+      </div>
+  </div>
+</div>
