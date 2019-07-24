@@ -5,7 +5,6 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import 'rxjs/Rx';
 
 import { environment } from '../environments/environment';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -16,9 +15,7 @@ import { CarsModule } from './cars/cars.module';
 import { AppRoutingModule } from './app.routing.module';
 
 import { reducers } from './shared/reducers';
-// import { AppEffects } from './shared/effects';
-import { BookEffects } from './books/books.effects';
-import { CarEffects } from './cars/cars.effects';
+import { effects } from './shared/effects';
 
 import { BookService } from './books/book.service';
 import { CarService } from './cars/car.service';
@@ -33,7 +30,7 @@ import { AppComponent } from './app.component';
     BrowserModule, FormsModule, HttpClientModule,
     AppRoutingModule, HomeModule, BooksModule, CarsModule,
     StoreModule.forRoot(reducers),
-    EffectsModule.forRoot([BookEffects, CarEffects]),
+    EffectsModule.forRoot(effects),
     !environment.production ? StoreDevtoolsModule.instrument({
       maxAge: 25 //  Retains last 25 states
     }):[]
