@@ -14,6 +14,6 @@ export class HomeComponent implements OnInit {
   }
 
   goToModules(strModule: string) {
-    this.router.navigate(['/'+strModule]);
+    this.router.navigate(['/' + strModule]);
   }
 }

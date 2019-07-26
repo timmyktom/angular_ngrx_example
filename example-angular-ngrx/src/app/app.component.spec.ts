@@ -1,27 +1,37 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, async, ComponentFixture } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { StoreModule, Store, Action } from '@ngrx/store';
+import { AppState } from './shared/reducers';
 import { AppComponent } from './app.component';
+import { provideMockStore } from '@ngrx/store/testing';
+
 describe('AppComponent', () => {
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [
-        AppComponent
-      ],
-    }).compileComponents();
-  }));
-  it('should create the app', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
-  }));
-  it(`should have as title 'app'`, async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('app');
-  }));
-  it('should render title in a h1 tag', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to app!');
-  }));
+    let component: AppComponent;
+    let fixture: ComponentFixture<AppComponent>;
+    let store: Store<{}>;
+
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+        providers: [
+            provideMockStore({ initialState: { bookState: {}, carState: {}}})
+        ],
+        declarations: [
+            AppComponent
+        ],
+        imports: [ RouterTestingModule]
+        })
+        .compileComponents();
+    }));
+
+    beforeEach(() => {
+        fixture = TestBed.createComponent(AppComponent);
+        component = fixture.componentInstance;
+        store = fixture.componentRef.injector.get(Store);
+        fixture.detectChanges();
+    });
+
+    it('should create the app', async(() => {
+        const app = fixture.debugElement.componentInstance;
+        expect(app).toBeTruthy();
+    }));
 });
