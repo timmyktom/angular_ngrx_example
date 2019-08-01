@@ -7,7 +7,7 @@ export interface CarState {
     carList: Car[];
     isCarListLoaded: boolean;
     selectedCar: Car;
-};
+}
 
 const initialCarState: CarState = {
     carList: [],
@@ -19,20 +19,22 @@ export function CarsReducer(state = initialCarState, action: CarsActions.CarsAct
     let newState: CarState;
     switch (action.type) {
         case CarsActions.GET_CARS_SUCCESS:
-            newState = Object.assign({}, state);
-            newState.carList = action.payload;
-            newState.isCarListLoaded = true;
+            newState = {...state,
+                carList: action.payload,
+                isCarListLoaded: true
+            };
             return newState;
         case CarsActions.GET_CAR_DETAILS:
-            newState = Object.assign({}, state);
-            newState.selectedCar = getCarDetails(state.carList, action.payload);
+            newState = {...state,
+                selectedCar:  getCarDetails(state.carList, action.payload)
+            };
             return newState;
         default:
             return state;
     }
 };
 
-function getCarDetails (carList: Car[], carModel: string) {
+function getCarDetails(carList: Car[], carModel: string) {
     return carList.find(car =>
         car.model === carModel);
 }

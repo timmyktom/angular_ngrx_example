@@ -8,8 +8,7 @@ import { Car } from '../car.model';
 })
 export class CarsListComponent implements OnInit {
   @Input() carsList: Car[];
-  
-  @Output() onCarSelect = new EventEmitter();
+  @Output() carSelect = new EventEmitter();
 
   selectedCarModel: string;
 
@@ -20,7 +19,7 @@ export class CarsListComponent implements OnInit {
 
   onSelect() {
     if (this.selectedCarModel) {
-      this.onCarSelect.emit({CarModel: this.selectedCarModel});
+      this.carSelect.emit({CarModel: this.selectedCarModel});
     }
   }
 
