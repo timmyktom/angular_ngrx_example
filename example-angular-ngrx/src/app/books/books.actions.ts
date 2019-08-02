@@ -1,5 +1,4 @@
 import { Action } from '@ngrx/store';
-
 import { Book } from './book.model';
 
 export const GET_BOOKS = 'GET_BOOKS';

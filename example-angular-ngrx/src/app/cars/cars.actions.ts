@@ -1,5 +1,4 @@
 import { Action } from '@ngrx/store';
-
 import { Car } from './car.model';
 
 export const GET_CARS = 'GET_CARS';
