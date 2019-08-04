@@ -1,9 +1,10 @@
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { provideMockStore } from '@ngrx/store/testing';
 import { StoreModule, Store, Action } from '@ngrx/store';
 import { AppState } from './shared/reducers';
 import { AppComponent } from './app.component';
-import { provideMockStore } from '@ngrx/store/testing';
+
 
 describe('AppComponent', () => {
     let component: AppComponent;
@@ -12,14 +13,14 @@ describe('AppComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-        providers: [
-            provideMockStore({ initialState: { bookState: {}, carState: {}}})
-        ],
-        declarations: [
-            AppComponent
-        ],
-        imports: [ RouterTestingModule]
-        })
+            providers: [
+                provideMockStore({ initialState: { bookState: {}, carState: {}}})
+            ],
+            declarations: [
+                AppComponent
+            ],
+            imports: [ RouterTestingModule]
+            })
         .compileComponents();
     }));
 
