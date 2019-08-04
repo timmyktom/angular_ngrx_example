@@ -6,33 +6,51 @@ import { Book, defaultBook } from './book.model';
 export interface BookState {
     bookList: Book[];
     isBookListLoaded: boolean;
+    isError: boolean;
     selectedBook: Book;
-};
+}
 
-const initialBookState: BookState = {
+export const initialBookState: BookState = {
     bookList: [],
     isBookListLoaded: false,
+    isError: false,
     selectedBook: defaultBook
 };
 
 export function BooksReducer(state = initialBookState, action: BooksActions.BooksActions): BookState {
     let newState: BookState;
     switch (action.type) {
+        case BooksActions.GET_BOOKS:
+            newState = {...state,
+                bookList: [],
+                isBookListLoaded: false,
+                isError: false
+            };
+            return newState;
         case BooksActions.GET_BOOKS_SUCCESS:
-            newState = Object.assign({}, state);
-            newState.bookList = action.payload;
-            newState.isBookListLoaded = true;
+            newState = {...state,
+                bookList: action.payload,
+                isBookListLoaded: true,
+                isError: false
+            };
+            return newState;
+        case BooksActions.GET_BOOKS_ERROR:
+            newState = {...state,
+                isBookListLoaded: false,
+                isError: true
+            };
             return newState;
         case BooksActions.GET_BOOK_DETAILS:
-            newState = Object.assign({}, state);
-            newState.selectedBook = getBookDetails(state.bookList, action.payload);
+            newState = {...state,
+                selectedBook:  getBookDetails(state.bookList, action.payload)
+            };
             return newState;
         default:
             return state;
     }
-};
+}
 
-function getBookDetails (bookList: Book[], bookId: number) {
+function getBookDetails(bookList: Book[], bookId: number) {
     return bookList.find(book =>
         book.id === bookId);
 }

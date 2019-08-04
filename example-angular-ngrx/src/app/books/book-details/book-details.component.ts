@@ -11,7 +11,7 @@ export class BookDetailsComponent implements OnInit {
   data: Book;
   @Input('selectedBookDetails')
   set selectedBookDetails(val) {
-    this.data = <Book>val;
+    this.data = val;
   }
 
   constructor() { }

@@ -11,7 +11,7 @@ import { GetBooks, GetCars } from './shared/actions';
 })
 export class AppComponent implements OnInit {
   constructor(private store: Store<AppState>) {}
-  
+
     ngOnInit() {
       this.store.dispatch(new GetBooks());
       this.store.dispatch(new GetCars());

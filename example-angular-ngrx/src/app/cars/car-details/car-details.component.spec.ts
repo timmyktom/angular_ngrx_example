@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CarDetailsComponent } from './car-details.component';
+import * as mockCarData from '../../../tests-utils/mock-cars';
 
 describe('CarDetailsComponent', () => {
   let component: CarDetailsComponent;
@@ -16,6 +17,7 @@ describe('CarDetailsComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CarDetailsComponent);
     component = fixture.componentInstance;
+    component.selectedCarDetails = mockCarData.mockCars[0];
     fixture.detectChanges();
   });
 

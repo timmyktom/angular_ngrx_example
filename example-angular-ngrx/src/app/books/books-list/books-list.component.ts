@@ -11,8 +11,7 @@ import { Book } from '../book.model';
 export class BooksListComponent implements OnInit {
 
   @Input() booksList: Book[];
-  
-  @Output() onBookSelect = new EventEmitter();
+  @Output() bookSelect = new EventEmitter();
 
   selectedBookId: number;
 
@@ -23,7 +22,7 @@ export class BooksListComponent implements OnInit {
 
   onSelect() {
     if (this.selectedBookId) {
-       this.onBookSelect.emit({bookId: this.selectedBookId});
+       this.bookSelect.emit({bookId: this.selectedBookId});
     }
   }
 }

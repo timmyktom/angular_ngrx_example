@@ -7,7 +7,6 @@ import * as actions from './cars.actions';
 
 @Injectable()
 export class CarEffects {
-    
     getCarsEffects$ = createEffect(() =>
         this.actions$.pipe(
             ofType(actions.GET_CARS),

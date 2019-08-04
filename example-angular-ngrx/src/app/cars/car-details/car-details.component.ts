@@ -10,7 +10,7 @@ export class CarDetailsComponent implements OnInit {
   data: Car;
   @Input('selectedCarDetails')
   set selectedCarDetails(val) {
-    this.data = <Car>val;
+    this.data = val;
   }
 
   constructor() { }
