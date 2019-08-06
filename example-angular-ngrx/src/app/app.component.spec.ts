@@ -4,6 +4,7 @@ import { provideMockStore } from '@ngrx/store/testing';
 import { StoreModule, Store, Action } from '@ngrx/store';
 import { AppState } from './shared/reducers';
 import { AppComponent } from './app.component';
+import { GetBooks, GetCars } from './shared/actions';
 
 
 describe('AppComponent', () => {
@@ -35,4 +36,20 @@ describe('AppComponent', () => {
         const app = fixture.debugElement.componentInstance;
         expect(app).toBeTruthy();
     }));
+
+    describe('ngOnInit', () => {
+        it('should dispatch GetBooks action ', () => {
+          const actionBooks = new GetBooks();
+          const spyActionBooks = spyOn(store, 'dispatch');
+          component.ngOnInit();
+          expect(spyActionBooks).toHaveBeenCalledWith(actionBooks);
+        });
+
+        it('should dispatch GetCars action ', () => {
+          const actionCars = new GetCars();
+          const spyActionCars = spyOn(store, 'dispatch');
+          component.ngOnInit();
+          expect(spyActionCars).toHaveBeenCalledWith(actionCars);
+        });
+      });
 });
