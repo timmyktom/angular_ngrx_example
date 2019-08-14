@@ -7,6 +7,7 @@ import { BookEffects } from './books.effects';
 import { BookService } from './book.service';
 import { AppState } from '../shared/reducers';
 import * as booksActions from './books.actions';
+import * as sharedActions from '../shared/actions';
 import * as mockBookData from '../../tests-utils/mock-books';
 
 describe('BookEffects', () => {
@@ -29,6 +30,7 @@ describe('BookEffects', () => {
             ],
         });
         effects = TestBed.get<BookEffects>(BookEffects);
+        store = TestBed.get(Store);
     });
 
     it('should create', () => {
@@ -36,9 +38,11 @@ describe('BookEffects', () => {
     });
 
     describe('GET_BOOKS action', () => {
+        let dispatchStoreCall;
         let getBooksServiceCall;
         beforeEach(() => {
             getBooksServiceCall = spyOn(service, 'getBooks');
+            dispatchStoreCall = spyOn(store, 'dispatch');
         });
 
         describe('When GetBooks action is dispatched', () => {
@@ -49,6 +53,9 @@ describe('BookEffects', () => {
             });
             it('Check service is getting called', () => {
                 expect(getBooksServiceCall).toHaveBeenCalledTimes(1);
+            });
+            it('should dispatch ShowLoader action ', () => {
+                expect(dispatchStoreCall).toHaveBeenCalledWith(new sharedActions.ShowLoader());
             });
         });
 
@@ -65,6 +72,10 @@ describe('BookEffects', () => {
                     done();
                 });
             });
+            it('should dispatch HideLoader action ', () => {
+                effects.getBooksEffects$.subscribe();
+                expect(dispatchStoreCall).toHaveBeenCalledWith(new sharedActions.HideLoader());
+            });
         });
 
         describe('When GetBooks action is dispatched with failed response', () => {
@@ -79,6 +90,10 @@ describe('BookEffects', () => {
                     expect(resultAction).toEqual(expectedAction);
                     done();
                 });
+            });
+            it('should dispatch HideLoader action ', () => {
+                effects.getBooksEffects$.subscribe();
+                expect(dispatchStoreCall).toHaveBeenCalledWith(new sharedActions.HideLoader());
             });
         });
     });

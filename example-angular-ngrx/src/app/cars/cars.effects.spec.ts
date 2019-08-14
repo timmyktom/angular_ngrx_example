@@ -1,12 +1,13 @@
 import { async, TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { StoreModule, Store, Action } from '@ngrx/store';
-import { provideMockStore } from '@ngrx/store/testing';
+import { provideMockStore, MockStore  } from '@ngrx/store/testing';
 import { Subject, of, ReplaySubject, throwError } from 'rxjs';
 import { CarEffects } from './cars.effects';
 import { CarService } from './car.service';
 import { AppState } from '../shared/reducers';
 import * as carsActions from './cars.actions';
+import * as sharedActions from '../shared/actions';
 import * as mockCarData from '../../tests-utils/mock-cars';
 
 describe('CarEffects', () => {
@@ -29,6 +30,7 @@ describe('CarEffects', () => {
             ],
         });
         effects = TestBed.get<CarEffects>(CarEffects);
+        store = TestBed.get(Store);
     });
 
     it('should create', () => {
@@ -36,9 +38,11 @@ describe('CarEffects', () => {
     });
 
     describe('GET_CARS action', () => {
+        let dispatchStoreCall;
         let getCarsServiceCall;
         beforeEach(() => {
             getCarsServiceCall = spyOn(service, 'getCars');
+            dispatchStoreCall = spyOn(store, 'dispatch');
         });
 
         describe('When GetCars action is dispatched', () => {
@@ -49,6 +53,9 @@ describe('CarEffects', () => {
             });
             it('Check service is getting called', () => {
                 expect(getCarsServiceCall).toHaveBeenCalledTimes(1);
+            });
+            it('should dispatch ShowLoader action ', () => {
+                expect(dispatchStoreCall).toHaveBeenCalledWith(new sharedActions.ShowLoader());
             });
         });
 
@@ -65,6 +72,10 @@ describe('CarEffects', () => {
                     done();
                 });
             });
+            it('should dispatch HideLoader action ', () => {
+                effects.getCarsEffects$.subscribe();
+                expect(dispatchStoreCall).toHaveBeenCalledWith(new sharedActions.HideLoader());
+            });
         });
 
         describe('When GetCars action is dispatched with failed response', () => {
@@ -79,6 +90,10 @@ describe('CarEffects', () => {
                     expect(resultAction).toEqual(expectedAction);
                     done();
                 });
+            });
+            it('should dispatch HideLoader action ', () => {
+                effects.getCarsEffects$.subscribe();
+                expect(dispatchStoreCall).toHaveBeenCalledWith(new sharedActions.HideLoader());
             });
         });
     });
