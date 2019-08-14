@@ -11,8 +11,8 @@ import { CarDetailsComponent } from './car-details/car-details.component';
     FormsModule
   ],
   declarations: [
-    CarsComponent, 
-    CarsListComponent, 
+    CarsComponent,
+    CarsListComponent,
     CarDetailsComponent]
 })
 export class CarsModule { }

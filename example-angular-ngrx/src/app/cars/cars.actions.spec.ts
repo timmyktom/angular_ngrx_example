@@ -36,4 +36,3 @@ describe('GetCarDetails', () => {
         expect(action.payload).toEqual(carModel);
     });
 });
-

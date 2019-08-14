@@ -67,4 +67,12 @@ describe('BooksComponent', () => {
             component.onBookSelected({bookId: 123});
         });
   });
+
+  describe('When ngOnDestroy is called ', () => {
+    it('should unsubscribe', () => {
+        spyOn(component.bookStoreSubscription, 'unsubscribe');
+        component.ngOnDestroy();
+        expect(component.bookStoreSubscription.unsubscribe).toHaveBeenCalledTimes(1);
+    });
+  });
 });

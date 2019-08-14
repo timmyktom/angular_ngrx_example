@@ -1,4 +1,5 @@
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
+import { Component } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { provideMockStore } from '@ngrx/store/testing';
 import { StoreModule, Store, Action } from '@ngrx/store';
@@ -6,6 +7,11 @@ import { AppState } from './shared/reducers';
 import { AppComponent } from './app.component';
 import { GetBooks, GetCars } from './shared/actions';
 
+@Component({
+    selector: 'app-loader',
+    template: '',
+})
+class MockLoaderComponent {}
 
 describe('AppComponent', () => {
     let component: AppComponent;
@@ -15,10 +21,10 @@ describe('AppComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             providers: [
-                provideMockStore({ initialState: { bookState: {}, carState: {}}})
+                provideMockStore({ initialState: { bookState: {}, carState: {}, loaderState: { loadingCount: 0}}})
             ],
             declarations: [
-                AppComponent
+                AppComponent, MockLoaderComponent
             ],
             imports: [ RouterTestingModule]
             })

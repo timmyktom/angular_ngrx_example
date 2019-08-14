@@ -1,0 +1,12 @@
+.modal {
+    background-color: #0e000073;
+    display: block;
+
+    .spinner-container {
+        display: flex;
+        min-height: calc(100% - 3.5rem);
+        align-items: center;
+        margin: auto;
+        width: 50px;
+    }
+}

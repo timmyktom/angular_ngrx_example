@@ -67,4 +67,12 @@ describe('CarsComponent', () => {
         component.onCarSelected({CarModel: '123'});
     });
   });
+
+  describe('When ngOnDestroy is called ', () => {
+    it('should unsubscribe', () => {
+        spyOn(component.carStoreSubscription, 'unsubscribe');
+        component.ngOnDestroy();
+        expect(component.carStoreSubscription.unsubscribe).toHaveBeenCalledTimes(1);
+    });
+  });
 });
